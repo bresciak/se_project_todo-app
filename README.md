@@ -12,6 +12,6 @@ Give a description of the technologies and techniques used. Pictures, GIFs, or s
 
 ## Deployment
 
-This project is deployed on GitHub Pages:
+This project is deployed on GitHub Pages: https://bresciak.github.io/se_project_todo-app/
 
 - ADD LINK HERE
