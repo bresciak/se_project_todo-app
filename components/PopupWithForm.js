@@ -1,0 +1,29 @@
+class PopupWithForm {
+  constructor(popupSelector, handleFormSubmit) {
+    this._popup = document.querySelector(popupSelector);
+    this._handleFormSubmit = handleFormSubmit;
+  }
+
+  _getInputValues() {
+    this._inputList = this._popup.querySelectorAll(".popup__input");
+    this._formValues = {};
+    this._inputList.forEach((input) => {
+      this._formValues[input.name] = input.value;
+    });
+    return this._formValues;
+  }
+  setEventListeners() {
+    this._popup
+      .querySelector(".popup__form")
+      .addEventListener("submit", (evt) => {
+        evt.preventDefault();
+        this._handleFormSubmit(this._getInputValues());
+      });
+  }
+
+  close() {
+    this._popup.classList.remove("popup_visible");
+    this._popup.querySelector(".popup__form").reset();
+  }
+}
+export default PopupWithForm;
