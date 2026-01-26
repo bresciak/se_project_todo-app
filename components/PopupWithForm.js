@@ -1,6 +1,6 @@
-class PopupWithForm {
+class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
-    this._popup = document.querySelector(popupSelector);
+    super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
   }
 
@@ -13,6 +13,7 @@ class PopupWithForm {
     return this._formValues;
   }
   setEventListeners() {
+    super.setEventListeners();
     this._popup
       .querySelector(".popup__form")
       .addEventListener("submit", (evt) => {

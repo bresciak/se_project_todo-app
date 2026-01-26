@@ -3,6 +3,13 @@ class Popup {
     this._popup = document.querySelector(popupSelector);
     this._handleEscClose = this._handleEscClose.bind(this);
   }
+  setEventListeners() {
+    this._popup.addEventListener("click", (evt) => {
+      if (evt.target === this._popup) {
+        this.close();
+      }
+    });
+  }
   open() {
     this._popup.classList.add("popup_visible");
     document.addEventListener("keydown", this._handleEscClose);
@@ -17,3 +24,5 @@ class Popup {
     }
   }
 }
+
+export default Popup;

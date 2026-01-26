@@ -11,16 +11,9 @@ class Section {
     });
   }
 
-  setItem(element) {
+  addItem(element) {
     this._container.append(element);
   }
 }
 
-const section = new Section({
-  items: initialTodos,
-  renderer: (item) => {
-    const todo = generateTodo(item);
-    section.addItem(todo);
-  },
-  containerSelector: ".todos__list",
-});
+export default Section;
