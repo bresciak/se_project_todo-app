@@ -2,6 +2,7 @@ import { initialTodos, validationConfig } from "../utils/constants.js";
 import Todo from "../components/Todo.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
@@ -12,14 +13,19 @@ const todosList = document.querySelector(".todos__list");
 
 // The logic in this function should all be handled in the Todo class.
 const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template");
+  const todo = new Todo(
+    data,
+    "#todo-template",
+    (completed) => {
+      console.log("Checked:", completed);
+    },
+    () => {
+      console.log("Deleted");
+    },
+  );
   const todoElement = todo.getView();
   return todoElement;
 };
-
-initialTodos.forEach((item) => {
-  renderTodo(item);
-});
 
 const section = new Section(
   {
@@ -37,6 +43,10 @@ const popupWithForm = new PopupWithForm("#add-todo-popup", (formData) => {
     title: formData.title,
     description: formData.description,
   };
+
+  const todoElement = generateTodo(newTodoData);
+  section.addItem(todoElement);
+  popupWithForm.close();
 });
 
 popupWithForm.setEventListeners();
