@@ -27,16 +27,14 @@ const generateTodo = (data) => {
   return todoElement;
 };
 
-const section = new Section(
-  {
-    items: initialTodos,
-    renderer: (item) => {
-      const todo = generateTodo(item);
-      section.addItem(todo);
-    },
+const section = new Section({
+  items: initialTodos,
+  renderer: (item) => {
+    const todo = generateTodo(item);
+    section.addItem(todo);
   },
-  ".todos__list",
-);
+  containerSelector: ".todos__list",
+});
 
 const popupWithForm = new PopupWithForm("#add-todo-popup", (formData) => {
   const newTodoData = {
